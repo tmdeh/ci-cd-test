@@ -21,6 +21,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: set application.yml
+      uses: actions/checkout@v3
+    - run: mkdir ./src/main/resources
+    - run: touch ./src/main/resources/application-dev.yml
+    - run: echo "${{ secrets.APPLICATION }}" > ./src/main/resources/application-dev.yml
+    - run: cat ./src/main/resources/application-dev.yml
+
+
     - name: Add permission
       run: chmod +x gradlew
 
